@@ -190,4 +190,26 @@ class HCircleLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HCircleLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val hcl : HCircleLine = HCircleLine(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            hcl.draw(canvas, paint)
+            animator.animate {
+                hcl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hcl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
