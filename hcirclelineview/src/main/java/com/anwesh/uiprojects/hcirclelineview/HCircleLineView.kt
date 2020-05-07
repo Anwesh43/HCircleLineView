@@ -21,7 +21,7 @@ val sizeFactor : Float = 2.9f
 val rot : Float = 90f
 val foreColor : Int = Color.parseColor("#4CAF50")
 val backColor : Int = Color.parseColor("#BDBDBD")
-val delay : Long = 20
+val delay : Long = 15
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -42,8 +42,8 @@ fun Canvas.drawHCircleLine(scale : Float, size : Float, paint : Paint) {
     val sf3 : Float = sf.divideScale(2, parts)
     val sf4 : Float = sf.divideScale(3, parts)
     save()
-    rotate(90f * sf3)
-    for (j in (0..1)) {
+    rotate(rot * sf4)
+    for (j in (0..(lines - 1))) {
         drawHLine(j, sf, size, paint)
     }
     drawCircle(0f, 0f, size * sf3, paint)
